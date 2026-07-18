@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+User-agent: *
+Allow: /
+
+Sitemap: https://vakson.in/sitemap.xml
+=======
+# Vakson Consultancy Services – robots.txt
+# https://vakson.in
+
+User-agent: *
+Allow: /
+
+# Block admin/backend paths (if WordPress is used on the server)
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /xmlrpc.php
+Disallow: /wp-login.php
+Disallow: /?s=
+Disallow: /search/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /cache/
+
+# Allow search engine bots to crawl CSS and JS
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://vakson.in/sitemap.xml
+
+# Crawl-delay for bots other than Google
+User-agent: Bingbot
+Crawl-delay: 5
+
+User-agent: Yandex
+Crawl-delay: 10
+>>>>>>> 7b11c8f746f16adb3135387db9c84d4eca33ed39
