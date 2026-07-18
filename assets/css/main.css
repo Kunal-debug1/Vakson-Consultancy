@@ -155,8 +155,10 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 55px;
+  width: auto;
+  height: 55px;
   margin-right: 8px;
+  object-fit: contain;
 }
 
 .header .logo h1 {
@@ -197,6 +199,40 @@ h6 {
 
   .header .navmenu {
     order: 3;
+  }
+}
+
+/* Keep the compact header within narrow mobile viewports. */
+@media (max-width: 575px) {
+  .header {
+    padding: 10px 0;
+  }
+
+  .header .container-fluid {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .header .logo img {
+    height: 45px;
+    margin-right: 4px;
+  }
+
+  .header .logo .sitename {
+    font-size: 22px !important;
+  }
+
+  .header .logo span:not(.sitename) {
+    font-size: 9px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .header .btn-getstarted {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    margin-right: 0;
   }
 }
 
@@ -318,9 +354,12 @@ h6 {
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
+    background: transparent;
+    border: 0;
     font-size: 28px;
     line-height: 0;
     margin-right: 10px;
+    padding: 0;
     cursor: pointer;
     transition: color 0.3s;
   }
@@ -462,8 +501,10 @@ h6 {
 }
 
 .footer .footer-about .logo img {
-  max-height: 40px;
+  width: auto;
+  height: 40px;
   margin-right: 6px;
+  object-fit: contain;
 }
 
 .footer .footer-about .logo span {
@@ -832,6 +873,7 @@ section,
   z-index: 3;
 }
 
+.hero h1,
 .hero h2 {
   margin-bottom: 30px;
   font-size: 48px;
@@ -840,6 +882,7 @@ section,
 }
 
 @media (max-width: 768px) {
+  .hero h1,
   .hero h2 {
     font-size: 30px;
   }
@@ -851,6 +894,7 @@ section,
 
 @media (min-width: 1024px) {
 
+  .hero h1,
   .hero h2,
   .hero p {
     max-width: 60%;
@@ -2861,4 +2905,3 @@ section,
     padding-bottom: 48px;
   }
 }
-

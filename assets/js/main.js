@@ -25,17 +25,32 @@
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
-  function mobileNavToggle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
+  function setMobileNavState(isOpen, returnFocus = false) {
+    document.querySelector('body').classList.toggle('mobile-nav-active', isOpen);
+
     if (mobileNavToggleBtn) {
-      mobileNavToggleBtn.classList.toggle('bi-list');
-      mobileNavToggleBtn.classList.toggle('bi-x');
+      mobileNavToggleBtn.classList.toggle('bi-list', !isOpen);
+      mobileNavToggleBtn.classList.toggle('bi-x', isOpen);
+      mobileNavToggleBtn.setAttribute('aria-expanded', String(isOpen));
+      mobileNavToggleBtn.querySelector('.visually-hidden').textContent = isOpen ? 'Close navigation' : 'Open navigation';
+
+      if (returnFocus) mobileNavToggleBtn.focus();
     }
+  }
+
+  function mobileNavToggle() {
+    setMobileNavState(!document.querySelector('body').classList.contains('mobile-nav-active'));
   }
 
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
   }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && document.querySelector('body').classList.contains('mobile-nav-active')) {
+      setMobileNavState(false, true);
+    }
+  });
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -120,43 +135,6 @@
   });
 
   /**
-   * Initiate glightbox
-   */
-  if (typeof GLightbox !== 'undefined') {
-    GLightbox({ selector: '.glightbox' });
-  }
-
-  /**
-   * Init isotope layout and filters
-   */
-  if (typeof Isotope !== 'undefined' && typeof imagesLoaded !== 'undefined') {
-    document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-      let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-      let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-      let sort   = isotopeItem.getAttribute('data-sort') ?? 'original-order';
-
-      let initIsotope;
-      imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-        initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-          itemSelector: '.isotope-item',
-          layoutMode: layout,
-          filter: filter,
-          sortBy: sort
-        });
-      });
-
-      isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-        filters.addEventListener('click', function() {
-          isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-          this.classList.add('filter-active');
-          initIsotope.arrange({ filter: this.getAttribute('data-filter') });
-          if (typeof aosInit === 'function') aosInit();
-        }, false);
-      });
-    });
-  }
-
-  /**
    * Initiate Pure Counter
    */
   if (typeof PureCounter !== 'undefined') {
@@ -180,22 +158,6 @@
         }
       });
     });
-  }
-
-  /**
-   * Init swiper sliders
-   */
-  if (typeof Swiper !== 'undefined') {
-    function initSwiper() {
-      document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-        let config = JSON.parse(
-          swiperElement.querySelector(".swiper-config").innerHTML.trim()
-        );
-        // swiper-tab pagination is handled by custom tab UI — use standard Swiper
-        new Swiper(swiperElement, config);
-      });
-    }
-    window.addEventListener("load", initSwiper);
   }
 
 })();

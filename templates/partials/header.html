@@ -1,0 +1,22 @@
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <img src="assets/img/logo.webp" alt="Vakson Consultancy Services" width="500" height="500">
+      <div class="d-flex flex-column justify-content-center ms-2"><span class="sitename mb-0" style="color: #1a4b2e; font-size: 28px; font-weight: 800; line-height: 1;">Vakson</span><span style="color: #267245; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; line-height: 1; margin-top: 4px;">CONSULTANCY SERVICES</span></div>
+    </a>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html"{{active_home}}>Home</a></li>
+        <li><a href="about.html"{{active_about}}>About</a></li>
+        <li class="dropdown"><a href="services.html"{{active_services}}><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <ul>
+            <li><a href="service-solar.html">Solar Services</a></li><li><a href="service-audit.html">Electricity Bill Auditing</a></li><li><a href="service-efficiency.html">Energy Efficiency</a></li><li><a href="service-water.html">Water System Balancing</a></li><li><a href="service-electrical.html">Electrical &amp; Automation</a></li><li><a href="service-hvac.html">HVAC System Design</a></li><li><a href="service-mep.html">MEP Design &amp; BIM</a></li>
+          </ul>
+        </li>
+        <li><a href="contact.html"{{active_contact}}>Contact</a></li>
+      </ul>
+      <button type="button" class="mobile-nav-toggle d-xl-none bi bi-list" aria-controls="navmenu" aria-expanded="false"><span class="visually-hidden">Open navigation</span></button>
+    </nav>
+    <a class="btn-getstarted" href="contact.html">Request Quote</a>
+  </div>
+</header>
